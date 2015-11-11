@@ -14,7 +14,7 @@ do
 		PIP_INSTALL_FLAG=1
 	elif [[ $i == "init" ]]
 	then
-		mkvirtualenv $(basename $PWD) && touch .pip-init && workon test
+		mkvirtualenv --python=`which python` $(basename $PWD) && touch .pip-init && workon $(basename $PWD)
 		exit 0
 	elif [[ $i == "--save" ]]
 	then
