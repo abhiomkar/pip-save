@@ -1,0 +1,34 @@
+#!/bin/bash
+
+source /usr/local/bin/virtualenvwrapper.sh
+[ -z "$PIP3" ] && export PIP3=/usr/local/bin/pip3
+
+index=0
+PIP3_ARGS=( "$@" )
+
+for i in "$@"
+do
+	if [[ $i == "install" || $i == "uninstall" ]]
+	then
+		echo "install/uninstall opt found"
+		PIP3_INSTALL_FLAG=1
+	elif [[ $i == "init" ]]
+	then
+		mkvirtualenv $(basename $PWD) && touch .pip3-init && workon test
+		exit 0
+	elif [[ $i == "--save" ]]
+	then
+		echo "save opt found"
+		PIP3_SAVE_FLAG=1
+		unset PIP3_ARGS[$index]
+	fi
+
+	let index++
+done
+
+if [[ $PIP3_INSTALL_FLAG == 1 && $PIP3_SAVE_FLAG == 1 ]]
+then
+	$PIP3 ${PIP3_ARGS[@]} && $PIP3 freeze > requirements.txt
+else
+	$PIP3 $*
+fi
