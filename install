@@ -1,0 +1,25 @@
+#!/bin/bash
+
+# ~/.zshrc, ~/.bashrc
+SHELL_RC_FILE="$HOME/.$(basename $SHELL)rc"
+COUNT=0
+IFS=':' read -ra PATHS <<< "$PATH"
+
+for p in "${PATHS[@]}"; do
+	if [[ $p == "$HOME/bin" || $p == "~/bin" ]]
+	then
+		COUNT=$(($COUNT+1))
+	fi
+done
+
+if [[ $COUNT == 0 ]]
+then
+	echo 'export PATH=$HOME/bin:$PATH' >> $SHELL_RC_FILE
+fi
+
+[ $(grep -e "pipsave_line" ~/.zshrc | wc -l) == 0 ] && echo '[ -f ~/.pipsave_cd ] && source ~/.pipsave_cd # pipsave_line' >> $SHELL_RC_FILE
+
+curl -sSLk -o $HOME/bin/pip3 "https://raw.githubusercontent.com/abhiomkar/pip-save/master/bin/pip3" && \
+curl -sSLk -o $HOME/.pipsave_cd "https://raw.githubusercontent.com/abhiomkar/pip-save/master/src/pipsave_cd" && \
+echo -e ">>> Installation successful"
+chmod +x $HOME/bin/pip3

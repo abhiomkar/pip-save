@@ -1,0 +1,8 @@
+cd () {
+	builtin cd "$@"
+	if [ -f .pip3-init ] ; then
+	    workon $(basename $PWD)
+	elif [ -f .pip-init ] ; then
+	    workon $(basename $PWD)
+	fi
+}
