@@ -29,6 +29,8 @@ fi
 [ -z $WORKON_HOME ] && echo "export WORKON_HOME=~/.virtualenvs" >> $SHELL_RC_FILE
 [ -z $VIRTUALENVWRAPPER_SCRIPT ] && echo "source /usr/local/bin/virtualenvwrapper.sh" >> $SHELL_RC_FILE
 
+mkdir -p $HOME/bin
+
 curl -sSLk -o $HOME/bin/pip3 "https://raw.githubusercontent.com/abhiomkar/pip-save/master/bin/pip3" && \
 curl -sSLk -o $HOME/.pipsave_cd "https://raw.githubusercontent.com/abhiomkar/pip-save/master/src/pipsave_cd" && \
 echo -ne "\n>>> Installation successful"
