@@ -1,0 +1,49 @@
+# -*- mode: shell-script -*-
+
+[ -z "$PIP" ] && export PIP=/usr/local/bin/pip
+
+pip () {
+	if [ -n "$ZSH_VERSION" ]
+	then
+		index=1
+	else
+		index=0
+	fi
+
+	PIP_ARGS=( "$@" )
+
+	if [[ $# == 1 && ${PIP_ARGS[$index]} == "install" ]]
+	then
+		$PIP install -r requirements.txt
+		return
+	fi
+
+	for i;
+	do
+		if [[ $i == "install" || $i == "uninstall" ]]
+		then
+			local PIP_INSTALL_FLAG=1
+		elif [[ $i == "init" ]]
+		then
+			mkvirtualenv --python=`which python` $(basename $PWD) && \
+			touch .pip-init && \
+			workon $(basename $PWD) && \
+			export PIP=$WORKON_HOME/$(basename $PWD)/bin/pip && \
+			echo "export PIP=/usr/local/bin/pip" >> $WORKON_HOME/$(basename $PWD)/bin/postdeactivate
+			return
+		elif [[ $i == "--save" ]]
+		then
+			local PIP_SAVE_FLAG=1
+			unset "PIP_ARGS[$index]"
+		fi
+
+		let index++
+	done
+
+	if [[ $PIP_INSTALL_FLAG == 1 && $PIP_SAVE_FLAG == 1 ]]
+	then
+		$PIP ${PIP_ARGS[@]} && $PIP freeze > requirements.txt
+	else
+		$PIP $*
+	fi
+}

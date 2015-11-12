@@ -1,31 +1,42 @@
 #!/bin/bash
 
-echo -ne "Please make sure you install virtualenvwrapper in your system\n\n"
-echo -ne "  $ sudo pip install virtualenvwrapper\n\n"
-echo -ne "  or\n\n"
-echo -ne "  $ sudo pip3 install virtualenvwrapper\n"
-echo -ne "\n"
-echo -ne "Installing pip-save...\n"
+if [ ! -f /usr/local/bin/virtualenvwrapper.sh ]
+then
+	echo -ne "Please install virtualenvwrapper in your system\n\n"
+	echo -ne "  $ sudo pip install virtualenvwrapper\n\n"
+	echo -ne "  or\n\n"
+	echo -ne "  $ sudo pip3 install virtualenvwrapper\n"
+	exit 1
+fi
+
+echo -ne "Installing pip-save..."
 
 # ~/.zshrc, ~/.bashrc
 SHELL_RC_FILE="$HOME/.$(basename $SHELL)rc"
-COUNT=0
-IFS=':' read -ra PATHS <<< "$PATH"
 
-export PATH=$HOME/bin:$PATH
-echo 'export PATH=$HOME/bin:$PATH' >> $SHELL_RC_FILE
+mkdir -p $HOME/.virtualenvs && export WORKON_HOME=~/.virtualenvs
 
-[ $(grep -e "pipsave_line" ~/.zshrc | wc -l) == 0 ] && echo '[ -f ~/.pipsave_cd ] && source ~/.pipsave_cd # pipsave_line' >> $SHELL_RC_FILE
+curl -sSLk -o $HOME/.pipsave_cd "https://raw.githubusercontent.com/abhiomkar/pip-save/master/src/pipsave_cd" && \
+echo "  pipsave_cd" && \
+curl -sSLk -o $HOME/.pipsave_pip "https://raw.githubusercontent.com/abhiomkar/pip-save/master/bin/pip" && \
+echo "  pipsave_pip" && \
+curl -sSLk -o $HOME/.pipsave_pip3 "https://raw.githubusercontent.com/abhiomkar/pip-save/master/bin/pip3" && \
+echo "  pipsave_cd" && \
+echo -ne "\n" && \
+DOWNLOAD_OK=1 && \
+echo -e ">>> Installation successful"
 
-export WORKON_HOME=~/.virtualenvs
-source /usr/local/bin/virtualenvwrapper.sh
+[ -z $DOWNLOAD_OK ] && echo "exiting..." && exit 1
 
+[ -f ~/.pipsave_cd ] && source ~/.pipsave_cd
+[ -f ~/.pipsave_pip ] && source ~/.pipsave_pip
+[ -f ~/.pipsave_pip3 ] && source ~/.pipsave_pip3
+
+# Update Shell rc file (~/.bashrc, ~/.zshrc ..)
 [ -z $WORKON_HOME ] && echo "export WORKON_HOME=~/.virtualenvs" >> $SHELL_RC_FILE
 [ -z $VIRTUALENVWRAPPER_SCRIPT ] && echo "source /usr/local/bin/virtualenvwrapper.sh" >> $SHELL_RC_FILE
-
-mkdir -p $HOME/bin
-
-curl -sSLk -o $HOME/bin/pip3 "https://raw.githubusercontent.com/abhiomkar/pip-save/master/bin/pip3" && \
-curl -sSLk -o $HOME/.pipsave_cd "https://raw.githubusercontent.com/abhiomkar/pip-save/master/src/pipsave_cd" && \
-echo -e ">>> Installation successful"
-chmod +x $HOME/bin/pip3
+[ $(grep -e "pipsave_line" ~/.zshrc | wc -l) == 0 ] && \
+echo "
+[ -f ~/.pipsave_cd ] && source ~/.pipsave_cd # pipsave_line
+[ -f ~/.pipsave_pip ] && source ~/.pipsave_pip # pipsave_line
+[ -f ~/.pipsave_pip3 ] && source ~/.pipsave_pip3 # pipsave_line" >> $SHELL_RC_FILE
