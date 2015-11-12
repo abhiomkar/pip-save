@@ -1,5 +1,3 @@
-#!/bin/bash
-
 if [ ! -f /usr/local/bin/virtualenvwrapper.sh ]
 then
 	echo -ne "Please install virtualenvwrapper in your system\n\n"
@@ -35,7 +33,7 @@ echo -e ">>> Installation successful"
 # Update Shell rc file (~/.bashrc, ~/.zshrc ..)
 [ -z $WORKON_HOME ] && echo "export WORKON_HOME=~/.virtualenvs" >> $SHELL_RC_FILE
 [ -z $VIRTUALENVWRAPPER_SCRIPT ] && echo "source /usr/local/bin/virtualenvwrapper.sh" >> $SHELL_RC_FILE
-[ $(grep -e "pipsave_line" ~/.zshrc | wc -l) == 0 ] && \
+[[ $(grep -e "pipsave_line" ~/.zshrc | wc -l) == 0 ]] && \
 echo "
 [ -f ~/.pipsave_cd ] && source ~/.pipsave_cd # pipsave_line
 [ -f ~/.pipsave_pip ] && source ~/.pipsave_pip # pipsave_line
