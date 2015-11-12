@@ -1,0 +1,180 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="shortcut icon" href="favicon.ico">
+  <link rel="stylesheet" href="style.css">
+
+
+    <title>pip-save - npm like behaviour to pip</title>
+
+
+<style>
+
+  header {
+    border: 0;
+  }
+
+  h1 {
+    font-weight: 100;
+    font-size: 85px;
+    text-align: center;
+  }
+
+  h3 {
+    text-align: center;
+    font-weight: normal;
+    color: #a7a7a7;
+    font-size: 14px;
+    margin-top: 20px;
+  }
+
+  .dark-line {
+    background-color: #cccccc;
+    height: 10px;
+    margin-top: 20px;
+    margin-bottom: 12px;
+  }
+
+  .light-line {
+    background-color: #f1f1f1;
+    height: 6px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+  }
+
+  .light-line.one {
+    width: 80%;
+  }
+  .light-line.two {
+    width: 90%;
+  }
+  .light-line.three {
+    width: 70%;
+  }
+
+  .buttons {
+      text-align: center;
+      margin-top: 30px;
+  }
+
+button {
+  margin-left: 10px;
+  margin-right: 10px;
+  width: 100px;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+button a {
+  color: white;
+}
+
+button.github {
+  border: 1px solid #5badf0;
+  background-color: white;
+}
+
+button.github a {
+  color: #5badf0;
+}
+
+.demo {
+  margin-top: 50px;
+  text-align: center;
+}
+
+.demo a {
+  color: #5badf0;
+  font-size: 22px;
+  font-weight: 300;
+}
+
+.twitter {
+  margin-top: 40px;
+  text-align: center;
+}
+
+.twitter a {
+  color: #5badf0;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+footer {
+  color: #aaa;
+  margin-top: 55px;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 500;
+  border-top: 1px solid #eee;
+  padding-top: 30px;
+}
+
+footer a {
+  color: #444;
+}
+
+</style>
+
+</head>
+
+<body>
+
+  <section id="wrapper">
+    <header id="header">
+      <h1 class="main-title">pip-save</h1>
+      <h3 class="main-description">npm like behaviour to pip</h3>
+    </header>
+
+    <div class="lines">
+      <h4>Installation</h4>
+      <div>
+        <pre><b>$</b> source &lt;(curl -sSLk https://raw.githubusercontent.com/abhiomkar/pip-save/master/install)</pre>
+      </div>
+
+      <h4>Usage</h4>
+      <div> <p>Create virtual environment &amp;&amp; install packages</p>
+<pre><b>$</b> mkdir my-new-project &amp;&amp; cd my-new-project
+<b>$</b> pip init
+<b>$</b> pip --save install request numpy scipy
+<b>$</b> cat requirements.txt
+numpy==1.10.1
+request==0.0.2
+scipy==0.16.1
+wheel==0.24.0
+</pre>
+<br>
+<p>Install dependencies</p>
+<pre><b>$</b> pip install</pre>
+    </div>
+
+    <div class="buttons">
+      <button class="download"><a href="https://github.com/abhiomkar/pip-save/releases/latest">Download</a></button>
+      <button class="github"><a href="https://github.com/abhiomkar/pip-save">Github</a></button>
+    </div>
+
+    <div class="twitter">
+      <a href="http://twitter.com/abhiomkar">Follow @abhiomkar</a>
+    </div>
+
+    <footer>Made by <a href="http://abhiomkar.in">Abhinay Omkar</a></footer>
+  </section>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-70053325-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</body>
+</html>
