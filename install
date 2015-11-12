@@ -19,7 +19,7 @@ echo -ne "\n  pipsave_cd\n" && \
 curl -sSLk -o $HOME/.pipsave_pip "https://raw.githubusercontent.com/abhiomkar/pip-save/master/src/pip" && \
 echo "  pipsave_pip" && \
 curl -sSLk -o $HOME/.pipsave_pip3 "https://raw.githubusercontent.com/abhiomkar/pip-save/master/src/pip3" && \
-echo "  pipsave_cd" && \
+echo "  pipsave_pip3" && \
 echo -ne "\n" && \
 DOWNLOAD_OK=1 && \
 echo -e ">>> Installation successful"
