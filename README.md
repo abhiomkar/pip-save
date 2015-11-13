@@ -32,6 +32,11 @@ Read my blog post here:
 
 http://blog.abhiomkar.in/2015/11/12/pip-save-npm-like-behaviour-to-pip
 
+TODO
+----
+
+* Generate `setup.py` on `pip init` just like [pip-init](https://github.com/juanpabloaj/pip-init)
+
 Author
 ------
 
