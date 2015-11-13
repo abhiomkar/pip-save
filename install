@@ -33,7 +33,7 @@ echo -e ">>> Installation successful"
 # Update Shell rc file (~/.bashrc, ~/.zshrc ..)
 [ -z $WORKON_HOME ] && echo "export WORKON_HOME=~/.virtualenvs" >> $SHELL_RC_FILE
 [ -z $VIRTUALENVWRAPPER_SCRIPT ] && echo "source /usr/local/bin/virtualenvwrapper.sh" >> $SHELL_RC_FILE
-grep -q "pipsave_line" ~/.zshrc && \
+grep -q "pipsave_line" ~/.zshrc > /dev/null || \
 echo "
 [ -f ~/.pipsave_cd ] && source ~/.pipsave_cd # pipsave_line
 [ -f ~/.pipsave_pip ] && source ~/.pipsave_pip # pipsave_line
