@@ -4,7 +4,9 @@ then
 	echo -ne "  $ sudo pip install virtualenvwrapper\n\n"
 	echo -ne "  or\n\n"
 	echo -ne "  $ sudo pip3 install virtualenvwrapper\n"
-	exit 1
+	return 1
+else
+	type mkvirtualenv || source /usr/local/bin/virtualenvwrapper.sh
 fi
 
 echo -ne "Installing pip-save..."
