@@ -1,6 +1,7 @@
 # pip-save
 bringing npm like behavior to pip including init &amp; save.
 
+[![asciicast](https://asciinema.org/a/6glxw1um5qrp52zzn2hyi5d5s.png)](https://asciinema.org/a/6glxw1um5qrp52zzn2hyi5d5s)
 
 Installation
 ------------
