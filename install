@@ -26,16 +26,21 @@ echo -ne "\n" && \
 DOWNLOAD_OK=1 && \
 echo -e ">>> Installation successful"
 
-[ -z $DOWNLOAD_OK ] && echo "exiting..." && exit 1
+[ -z $DOWNLOAD_OK ] && echo "exiting..." && return 1
 
 [ -f ~/.pipsave_cd ] && source ~/.pipsave_cd
 [ -f ~/.pipsave_pip ] && source ~/.pipsave_pip
 [ -f ~/.pipsave_pip3 ] && source ~/.pipsave_pip3
 
 # Update Shell rc file (~/.bashrc, ~/.zshrc ..)
-[ -z $WORKON_HOME ] && echo "export WORKON_HOME=~/.virtualenvs" >> $SHELL_RC_FILE
-[ -z $VIRTUALENVWRAPPER_SCRIPT ] && echo "source /usr/local/bin/virtualenvwrapper.sh" >> $SHELL_RC_FILE
-grep -q "pipsave_line" ~/.zshrc > /dev/null || \
+
+grep -q "export WORKON_HOME=~/.virtualenvs" $SHELL_RC_FILE > /dev/null || \
+echo "export WORKON_HOME=~/.virtualenvs" >> $SHELL_RC_FILE
+ 
+grep -q "source /usr/local/bin/virtualenvwrapper.sh" $SHELL_RC_FILE > /dev/null || \
+echo "source /usr/local/bin/virtualenvwrapper.sh" >> $SHELL_RC_FILE
+
+grep -q "pipsave_line" $SHELL_RC_FILE > /dev/null || \
 echo "
 [ -f ~/.pipsave_cd ] && source ~/.pipsave_cd # pipsave_line
 [ -f ~/.pipsave_pip ] && source ~/.pipsave_pip # pipsave_line
