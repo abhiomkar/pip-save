@@ -1,5 +1,5 @@
 # pip-save
-bringing npm like behavior to pip including init &amp; save.
+bringing npm like behavior to pip including init & save.
 
 [![asciicast](https://asciinema.org/a/6glxw1um5qrp52zzn2hyi5d5s.png)](https://asciinema.org/a/6glxw1um5qrp52zzn2hyi5d5s)
 
@@ -13,7 +13,7 @@ Usage
 
 Create virtual environment & install packages
 
-	$ mkdir my-new-project &amp;&amp; cd my-new-project
+	$ mkdir my-new-project && cd my-new-project
 	$ pip init
 	$ pip --save install request numpy scipy
 	$ cat requirements.txt
